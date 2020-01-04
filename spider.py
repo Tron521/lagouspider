@@ -20,7 +20,8 @@ def get_data(url,page,position):#获取拉勾网的数据
         "Content-Length": "25",
         "Origin": "https://www.lagou.com",
         "Connection": "keep-alive",
-        "Referer": "https://www.lagou.com/jobs/list_python/p-city_0?&cl=false&fromSearch=true&labelWords=&suginput="
+        "Referer": "https://www.lagou.com/jobs/list_python/p-city_0?&cl=false&fromSearch=true&labelWords=&suginput=",
+        "Cookie": "此处添加你自己的cookie"
     }
     post_data = {"first":"false","pn":page,"kd":position}#post的表单格式
     json = requests.post(url,post_data,headers=header).json()#requests的post请求获取json数据
@@ -47,7 +48,7 @@ def main():
     url = "https://www.lagou.com/jobs/positionAjax.json?needAddtionalResult=false"
     for i in range(1,page+1):
         informations = get_data(url,i,position)
-        time.sleep(random.randint(10, 20))
+        time.sleep(random.randint(25, 40))
         for row in informations:
             ws1.append(row)
     wb.save('{}职位信息.xlsx'.format(position))
